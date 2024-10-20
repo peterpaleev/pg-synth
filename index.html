@@ -3,17 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MIDI Sequence Generator</title>
+  <title>MIDI VISUALISER</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 </head>
 <body>
   <div id="app">
-    <h1>MIDI Sequence Generator</h1>
-    <div id="piano-keyboard"></div>
-    <div id="matrix-view"></div>
-    <div id="graph-view"></div>
+    <header>
+      <h1>MIDI VISUALISER</h1>
+    </header>
+    <main>
+      <div id="graph-view"></div>
+      <div id="matrix-view"></div>
+    </main>
+    <footer>
+      <div id="piano-keyboard"></div>
+    </footer>
   </div>
   <script src="script.js"></script>
 </body>
