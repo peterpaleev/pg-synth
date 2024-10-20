@@ -1,5 +1,10 @@
 # MIDI Sequence Generator
 
+## Live Demo
+
+You can try out the MIDI Sequence Generator live at: [https://peterpaleev.github.io/pg-synth/](https://peterpaleev.github.io/pg-synth/)
+
+
 ## Overview
 
 This web application is a MIDI Sequence Generator that allows users to create and visualize musical sequences using keyboard input. It provides an interactive interface with multiple visual representations of the musical data, including a piano keyboard, a note transition matrix, and a graph visualization of chord progressions.
