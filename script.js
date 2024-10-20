@@ -21,6 +21,7 @@ let activeNotes = {};
 // Sketches
 let pianoSketch, matrixSketch, graphSketch;
 let synth;
+let filter;
 
 function initializeApp() {
     console.log("Initializing MIDI Sequence Generator");
@@ -29,10 +30,59 @@ function initializeApp() {
     initializeMatrixSketch();
     initializeGraphSketch();
     setupKeyboardListeners();
+    setupSynthSettingsToggle();
 }
 
 function initializeSynth() {
     synth = new Tone.PolySynth(Tone.Synth).toDestination();
+    filter = new Tone.Filter(2000, "lowpass").toDestination();
+    synth.connect(filter);
+
+    // Set initial values
+    synth.set({
+        volume: -10,
+        envelope: {
+            attack: 0.1,
+            decay: 0.2,
+            sustain: 0.5,
+            release: 0.5
+        }
+    });
+
+    setupSynthControls();
+}
+
+function setupSynthControls() {
+    const volumeControl = document.getElementById('volume');
+    const attackControl = document.getElementById('attack');
+    const decayControl = document.getElementById('decay');
+    const sustainControl = document.getElementById('sustain');
+    const releaseControl = document.getElementById('release');
+    const filterCutoffControl = document.getElementById('filterCutoff');
+
+    volumeControl.addEventListener('input', (e) => {
+        synth.volume.value = parseFloat(e.target.value);
+    });
+
+    attackControl.addEventListener('input', (e) => {
+        synth.set({ envelope: { attack: parseFloat(e.target.value) } });
+    });
+
+    decayControl.addEventListener('input', (e) => {
+        synth.set({ envelope: { decay: parseFloat(e.target.value) } });
+    });
+
+    sustainControl.addEventListener('input', (e) => {
+        synth.set({ envelope: { sustain: parseFloat(e.target.value) } });
+    });
+
+    releaseControl.addEventListener('input', (e) => {
+        synth.set({ envelope: { release: parseFloat(e.target.value) } });
+    });
+
+    filterCutoffControl.addEventListener('input', (e) => {
+        filter.frequency.value = parseFloat(e.target.value);
+    });
 }
 
 function initializePianoKeyboard() {
@@ -90,7 +140,8 @@ function initializeMatrixSketch() {
                     p.stroke(220); // Light gray for grid lines
                     p.fill(cellColor);
                     p.rect(i * cellSize, j * cellSize, cellSize, cellSize);
-                    p.fill(intensity > 0.5 ? 255 : 0); // White text for dark backgrounds, black for light
+                    //p.fill(intensity > 0.5 ? 255 : 0); // White text for dark backgrounds, black for light
+                    p.fill(0);
                     p.textAlign(p.CENTER, p.CENTER);
                     p.text(matrix[i][j], i * cellSize + cellSize/2, j * cellSize + cellSize/2);
                 }
@@ -111,7 +162,7 @@ function initializeMatrixSketch() {
                     const noteIndex = NOTES.indexOf(note);
                     const alpha = p.map(age, 0, maxAge, 255, 0);
                     p.noStroke();
-                    p.fill(NOTE_COLORS[note] + alpha.toString(16).padStart(2, '0'));
+                    p.fill(255, 0, 0, alpha); // Bright red with fading alpha
                     p.rect(noteIndex * cellSize, noteIndex * cellSize, cellSize, cellSize);
                     
                     // Redraw the text
@@ -367,6 +418,18 @@ function playNote(note) {
 function updateChord() {
     // TODO: Implement chord detection logic
     console.log(`Updating current chord`);
+}
+
+function setupSynthSettingsToggle() {
+    const toggle = document.getElementById('synth-settings-toggle');
+    const settings = document.getElementById('synth-settings');
+    
+    toggle.addEventListener('click', () => {
+        settings.classList.toggle('collapsed');
+        toggle.textContent = settings.classList.contains('collapsed') 
+            ? 'Synth Settings ▼' 
+            : 'Synth Settings ▲';
+    });
 }
 
 // Initialize the app when the window loads

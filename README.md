@@ -30,6 +30,11 @@ This web application is a MIDI Sequence Generator that allows users to create an
    - Represents symmetry and transformations in music as geometric operations.
    - Shows phase shifts in sequences visually.
 
+6. **Synth Settings Adjuster**
+   - Allows real-time adjustment of synthesizer parameters.
+   - Controls for volume, attack, decay, sustain, release, and filter cutoff.
+   - Provides immediate audible feedback as settings are changed.
+
 ## Technical Details
 
 - Built with HTML, CSS, and JavaScript.
@@ -71,8 +76,8 @@ This web application is a MIDI Sequence Generator that allows users to create an
 
 ## Contributors
 
-[Your Name or Team Name]
+@peterpaleev
 
 ## License
 
-[Specify your license here, e.g., MIT License]
+MIT License

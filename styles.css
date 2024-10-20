@@ -58,3 +58,38 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+#synth-settings-container {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#synth-settings-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+
+#synth-settings {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  max-height: 1000px; /* Adjust this value based on your content */
+}
+
+#synth-settings.collapsed {
+  max-height: 0;
+}
+
+#synth-settings div {
+  margin-bottom: 10px;
+}
+
+#synth-settings label {
+  display: inline-block;
+  width: 100px;
+}
+
+#synth-settings input[type="range"] {
+  width: 200px;
+}

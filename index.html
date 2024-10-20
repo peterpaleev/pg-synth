@@ -20,6 +20,35 @@
     <footer>
       <div id="piano-keyboard"></div>
     </footer>
+    <div id="synth-settings-container">
+      <h2 id="synth-settings-toggle">Synth Settings ▼</h2>
+      <div id="synth-settings" class="collapsed">
+        <div>
+          <label for="volume">Volume:</label>
+          <input type="range" id="volume" min="-60" max="0" value="-10" step="1">
+        </div>
+        <div>
+          <label for="attack">Attack:</label>
+          <input type="range" id="attack" min="0" max="2" value="0.1" step="0.01">
+        </div>
+        <div>
+          <label for="decay">Decay:</label>
+          <input type="range" id="decay" min="0" max="2" value="0.2" step="0.01">
+        </div>
+        <div>
+          <label for="sustain">Sustain:</label>
+          <input type="range" id="sustain" min="0" max="1" value="0.5" step="0.01">
+        </div>
+        <div>
+          <label for="release">Release:</label>
+          <input type="range" id="release" min="0" max="5" value="0.5" step="0.01">
+        </div>
+        <div>
+          <label for="filterCutoff">Filter Cutoff:</label>
+          <input type="range" id="filterCutoff" min="50" max="5000" value="2000" step="10">
+        </div>
+      </div>
+    </div>
   </div>
   <script src="script.js"></script>
 </body>
